@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #ffffff;
+        color: #424b54;
+        font-family: "Cinzel", serif;
+        text-align: center;
+      }
+
+      #title {
+        margin-top: 100px;
+        font-size: 36px;
+      }
+      #days {
+        font-size: 8px;
+        display: inline-block;
+      }
+
+      #hours {
+        font-size: 8px;
+        display: inline-block;
+      }
+
+      #minutes {
+        font-size: 8px;
+        display: inline-block;
+      }
+
+      #seconds {
+        font-size: 8px;
+        display: inline-block;
+      }
+
+      .count {
+        font-weight: 700;
+        margin: auto 20px;
+        font-size: 30px;
+        border: 2px solid grey;
+        line-height: 100px;
+        width: 50px;
+        height: 100px;
+        padding: 10px;
+        border-radius: 8px;
+        background: linear-gradient(transparent 50%, grey 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title">
+      <h1>2021-02-03 Wed <br /><span>期末倒數</span></h1>
+    </div>
+
+    <div id="days">
+      <h1>DAYS</h1>
+      <div class="count">
+        <span class="daySpan"></span>
+      </div>
+    </div>
+
+    <div id="hours">
+      <h1>HOURS</h1>
+      <div class="count">
+        <span class="hourSpan"></span>
+      </div>
+    </div>
+
+    <div id="minutes">
+      <h1>MINUTES</h1>
+      <div class="count">
+        <span class="minuteSpan"></span>
+      </div>
+    </div>
+
+    <div id="seconds">
+      <h1>SECONDS</h1>
+      <div class="count">
+        <span class="secondSpan"></span>
+      </div>
+    </div>
+    <script>
+      const daySpan = document.querySelector(".daySpan");
+      const hourSpan = document.querySelector(".hourSpan");
+      const minuteSpan = document.querySelector(".minuteSpan");
+      const secondSpan = document.querySelector(".secondSpan");
+
+      deadline = new Date("2021-2-03 00:00");
+
+      function countdown() {
+        const now = new Date();
+        const timeCount = deadline - now;
+        let day, hour, minute, second;
+        if (timeCount < 0) {
+          return 0;
+        }
+
+        second = Math.floor((timeCount / 1000) % 60);
+        minute = Math.floor((timeCount / 1000 / 60) % 60);
+        hour = Math.floor((timeCount / 1000 / 60 / 60) % 24);
+        day = Math.floor(timeCount / 1000 / 60 / 60 / 24);
+
+        daySpan.innerHTML = day;
+        hourSpan.innerHTML = hour;
+        minuteSpan.innerHTML = minute;
+        secondSpan.innerHTML = second;
+
+        setTimeout(countdown, 1000);
+      }
+
+      countdown();
+    </script>
+  </body>
+</html>
